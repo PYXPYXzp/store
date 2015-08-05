@@ -7,6 +7,7 @@ class Units(models.Model):
     type_units = models.CharField(max_length=200, null=True, blank=True)
 
 class Product (models.Model):
+    image = models.ImageField()
     type = models.ForeignKey(Type)
     company = models.CharField(max_length=200, null=True, blank=True)
     model = models.CharField(max_length=200, null=True, blank=True)
@@ -15,5 +16,6 @@ class Product (models.Model):
     height_shisha = models.IntegerField(default=0, null=True, blank=True)
     type_bowls = models.CharField(max_length=200, null=True, blank=True)
     units = models.ForeignKey(Units,null=True, blank=True)
+    cost = models.IntegerField(default=0, null=True, blank=True)
     characteristics = models.TextField(null=True, blank=True)
     specification = models.TextField(null=True, blank=True)
