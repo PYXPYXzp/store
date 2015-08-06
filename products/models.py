@@ -7,7 +7,7 @@ class Units(models.Model):
     type_units = models.CharField(max_length=200, null=True, blank=True)
 
 class Product (models.Model):
-    image = models.ImageField()
+    #image = models.ImageField()
     type = models.ForeignKey(Type)
     company = models.CharField(max_length=200, null=True, blank=True)
     model = models.CharField(max_length=200, null=True, blank=True)
