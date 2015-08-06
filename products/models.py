@@ -27,4 +27,4 @@ class Product (models.Model):
     specification = models.TextField(null=True, blank=True)
 
     def __unicode__(self):
-        return self.company
+        return self.characteristics
