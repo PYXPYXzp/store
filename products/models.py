@@ -3,8 +3,14 @@ from django.db import models
 class Type (models.Model):
     type_product = models.CharField(max_length=200, null=True, blank=True)
 
+    def __unicode__(self):
+        return self.type_product
+
 class Units(models.Model):
     type_units = models.CharField(max_length=200, null=True, blank=True)
+
+    def __unicode__(self):
+        return self.type_units
 
 class Product (models.Model):
     #image = models.ImageField()
@@ -19,3 +25,6 @@ class Product (models.Model):
     cost = models.IntegerField(default=0, null=True, blank=True)
     characteristics = models.TextField(null=True, blank=True)
     specification = models.TextField(null=True, blank=True)
+
+    def __unicode__(self):
+        return self.company
