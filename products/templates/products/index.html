@@ -1,9 +1,3 @@
-{% if type_product %}
-    <ul>
-    {% for type in type_product %}
-        <li><a href=>{{ type.type_product }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No polls are available.</p>
-{% endif %}
+{% for type in type_product %}
+    <li><a href=>{{ type.type_product }}</a></li>
+{% endfor %}
