@@ -1,3 +1,4 @@
-{% for type in type_product %}
-    <li><a href=/index/{{}}>{{ type.type_product }}</a></li>
-{% endfor %}
+
+    <li><a href="{%url 'products:tobacco'%}">Табак</a></li>
+    <li><a href="{%url 'products:other'%}">Разное</a></li>
+    <li><a href="{%url 'products:shisha'%}">Кальян</a></li>
