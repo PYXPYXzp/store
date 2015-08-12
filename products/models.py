@@ -14,7 +14,7 @@ class Units(models.Model):
 
 class Product (models.Model):
     #image = models.ImageField()
-    type = models.ForeignKey(Type)
+    type = models.ForeignKey(Type, null=True, blank=True)
     company = models.CharField(max_length=200, null=True, blank=True)
     model = models.CharField(max_length=200, null=True, blank=True)
     flower = models.CharField(max_length=200, null=True, blank=True)
@@ -28,3 +28,5 @@ class Product (models.Model):
 
     def __unicode__(self):
         return self.characteristics
+    def __unicode__(self):
+        return unicode(self.type)

@@ -13,10 +13,29 @@ def index(request):
     context = {'type_product': type_product}
     return render(request, 'products/index.html', context)
 
+
+
 def tobaccolist(request):
     product_tobacco = Product.objects.filter(type = 2)
     context = {'product_tobacco': product_tobacco}
     return render(request, 'products/tobacco.html', context)
+
+
+def afzal_list(request):
+    tobacco_afzal = Product.objects.filter(company = 'AFZAL')
+    context = {'tobacco_afzal': tobacco_afzal}
+    return render(request, 'products/afzal.html', context)
+
+def alfakher_list(request):
+    tobacco_alfakher = Product.objects.filter(company = 'AlFakher')
+    context = {'tobacco_alfakher': tobacco_alfakher}
+    return render(request, 'products/alfakher.html', context)
+
+def nakhla_list(request):
+    tobacco_nakhla = Product.objects.filter(company = 'Nakhla')
+    context = {'tobacco_nakhla': tobacco_nakhla}
+    return render(request, 'products/nakhla.html', context)
+
 
 def shisha_list(request):
     product_shisha = Product.objects.filter(type__type_product='Кальян')
