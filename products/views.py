@@ -16,7 +16,7 @@ def index(request, ):
 
 
 
-def tobaccolist(request, company_id):
+def tobaccolist(request):
     product_tobacco = Product.objects.filter(type = 2)
     context = {'product_tobacco': product_tobacco}
     return render(request, 'products/tobacco.html'% context)
