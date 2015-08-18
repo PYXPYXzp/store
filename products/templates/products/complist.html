@@ -1,0 +1,7 @@
+{%extends 'products/base.html'%}
+{%block title%}Фирма табака{%endblock%}
+{%block content%}
+        {% for tobacco in tobacco_list %}
+                <li><a href="/index/tobacco/">{{ tobacco. }}</a></li>
+        {% endfor %}
+{%endblock%}

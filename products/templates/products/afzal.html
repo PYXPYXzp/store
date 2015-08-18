@@ -1,7 +1,0 @@
-{%extends 'products/base.html'%}
-{%block title%}Afzal{%endblock%}
-{%block content%}
-    {% for afzal in tobacco_afzal %}
-        <li><a href="{% url 'products:afzal'%}">{{afzal.flower }}</a></li>
-    {% endfor %}
-{%endblock%}

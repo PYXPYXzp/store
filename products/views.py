@@ -1,41 +1,21 @@
 
 # -*- coding: utf-8 -*-
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 
 from django.http import HttpResponse
 from .models import Type
 from .models import Product
+from .models import Company
 
-def index(request, ):
+def index(request):
     return render(request, 'products/main.html')
 
-#def index(request):
-   # type_product = Type.objects.all()
-    #context = {'type_product': type_product}
-   # return render(request, 'products/index.html', context)
-
-
-
-def tobaccolist(request):
-    product_tobacco = Product.objects.filter(type = 2)
-    context = {'product_tobacco': product_tobacco}
-    return render(request, 'products/tobacco.html'% context)
-
-
-def afzal_list(request):
-    tobacco_afzal = Product.objects.filter(company = 'AFZAL')
-    context = {'tobacco_afzal': tobacco_afzal}
-    return render(request, 'products/afzal.html', context)
-
-def alfakher_list(request):
-    tobacco_alfakher = Product.objects.filter(company = 'AlFakher')
-    context = {'tobacco_alfakher': tobacco_alfakher}
-    return render(request, 'products/alfakher.html', context)
-
-def nakhla_list(request):
-    tobacco_nakhla = Product.objects.filter(company = 'Nakhla')
-    context = {'tobacco_nakhla': tobacco_nakhla}
-    return render(request, 'products/nakhla.html', context)
+def tobacco_all(request):
+    tabak = Type.objects.get(type_product = 'Табак')
+    tobacco_list = Product.objects.filter(type = tabak)
+    all_company = Company.objects.all()
+    context = {'tobacco_list': tobacco_list,'all_company':all_company}
+    return render(request, 'products/complist.html', context)
 
 
 def shisha_list(request):
