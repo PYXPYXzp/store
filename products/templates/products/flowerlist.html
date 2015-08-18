@@ -1,0 +1,8 @@
+{%extends 'products/base.html'%}
+{%block title%}Перечень вкусов{%endblock%}
+{%block content%}
+{{flower_tobacco}}
+    {% for flowers in flower_tobacco %}
+        <li><a href="/index/tobacco/{{comp.id}}/detail">{{ flowers }}</a></li>
+    {% endfor %}
+{%endblock%}

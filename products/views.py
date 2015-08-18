@@ -10,15 +10,17 @@ from .models import Company
 def index(request):
     return render(request, 'products/main.html')
 
-def tobacco_all(request):
-    tabak = Type.objects.get(type_product = 'Табак')
-    tobacco_list = Product.objects.filter(type = tabak)
-    all_company = Company.objects.all()
-    context = {'tobacco_list': tobacco_list,'all_company':all_company}
+def tobacco_company(request):
+    companytob = Company.objects.filter(product__type__type_product ='Табак').distinct()
+    context = {'companytob':companytob}
     return render(request, 'products/complist.html', context)
 
+def flower_detail(request, comp_id):
+    flower_tobacco = Product.objects.filter(pk=comp_id)
+    context = {'flower_tobacco':flower_tobacco}
+    return render(request, 'products/flowerlist.html', context)
 
-def shisha_list(request):
+def shisha_list(request, ):
     product_shisha = Product.objects.filter(type__type_product='Кальян')
     context = {'product_shisha': product_shisha}
     return render(request, 'products/shisha.html', context)
