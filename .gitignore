@@ -1,1 +1,6 @@
 *.pyc
+venv/
+*.txt
+*.gz
+*.xml
+products/migrations/
