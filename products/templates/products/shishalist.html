@@ -1,7 +1,0 @@
-{%extends 'products/base.html'%}
-{%block title%}Модели кальянов{%endblock%}
-{%block content%}
-    {% for models in model_shisha %}
-        <li><a href="/index/tobacco/{{comp.id}}/detail">{{ models.model }}</a></li>
-    {% endfor %}
-{%endblock%}

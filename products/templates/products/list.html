@@ -1,0 +1,13 @@
+{%extends 'products/base.html'%}
+{%block title%}Перечень вкусов{%endblock%}
+{%block content%}
+    {% for models in model %}
+        {%if models.flower%}
+            <li><a href="/index/tobacco/{{comp.id}}/{{models.flower}}">{{models.flower }}</a></li>
+        {%elif models.model%}
+            <li><a href="/index/shisha/{{comp.id}}/{{models.model}}">{{models.model }}</a></li>
+        {%else%}
+            <li><a href="/index/other/{{comp.id}}/{{models}}">{{models}}</a></li>
+        {% endif %}
+    {% endfor %}
+{%endblock%}
