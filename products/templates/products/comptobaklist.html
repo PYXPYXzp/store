@@ -3,7 +3,7 @@
 {%block content%}
         {% for comp in companytob %}
 
-                <li><a href="/index/tobacco/{{comp.id}}/">{{ comp.name_company}}</a></li>
+                <li><a href="{%url 'products:list' comp.id %}">{{ comp.name_company}}</a></li>
 
         {% endfor %}
 {%endblock%}
