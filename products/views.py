@@ -27,8 +27,10 @@ def other_company(request):
 
 def list(request, comp_id):
     model = Product.objects.filter(company__pk=comp_id)
-    context = {'model': model}
+    context = {'comp_id': comp_id, 'model': model}
     return render(request, 'products/list.html', context)
 
-def detail(request, comp_id, offset ):
-    print "bdfb"
+def detailproduct(request, models_flower):
+    detail = Product.objects.filter(flower = models_flower)
+    context = {'detail':detail}
+    return render(request, 'products/details.html', context)

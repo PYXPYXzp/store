@@ -3,9 +3,9 @@
 {%block content%}
     {% for models in model %}
         {%if models.flower%}
-            <li><a href="{%url 'products:detail' models.flower%}">{{models.flower }}</a></li>
+            <li><a href="{%url 'products:detail' comp_id models.flower%}">{{models.flower}}</a></li>
         {%elif models.model%}
-            <li><a href="">{{models.model }}</a></li>
+            <li><a href="">{{models.model}}</a></li>
         {%else%}
             <li><a href="">{{models}}</a></li>
         {% endif %}
