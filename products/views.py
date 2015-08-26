@@ -3,9 +3,9 @@
 from django.shortcuts import get_object_or_404, render
 
 from django.http import HttpResponse
-from .models import Type
-from .models import Product
-from .models import Company
+from products.models import Type
+from products.models import Product
+from products.models import Company
 
 def index(request):
     return render(request, 'products/main.html')
@@ -30,7 +30,14 @@ def list(request, comp_id):
     context = {'comp_id': comp_id, 'model': model}
     return render(request, 'products/list.html', context)
 
-def detailproduct(request, models_flower):
+def detail_tobacco(request, models_flower, comp_id):
     detail = Product.objects.filter(flower = models_flower)
-    context = {'detail':detail}
-    return render(request, 'products/details.html', context)
+    company = Company.objects.filter(pk=comp_id)
+    context = {'detail':detail, 'company':company}
+    return render(request, 'products/details_tobak.html', context)
+
+def detail_shisha(request, models_model, comp_id):
+    detail = Product.objects.filter(model = models_model)
+    company = Company.objects.filter(pk=comp_id)
+    context = {'detail':detail, 'company':company}
+    return render(request, 'products/details_kal.html', context)

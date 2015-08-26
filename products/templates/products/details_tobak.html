@@ -1,0 +1,13 @@
+{%extends 'products/base.html'%}
+{%block title%}Главная страница{%endblock%}
+{%block content%}
+    {% for details in detail %}
+        {%for companys in company%}
+            <li> {{companys.name_company}}</li>
+        {%endfor%}
+        <li> {{details.flower}}</li>
+        <li> Цена:{{details.cost}}</li>
+        <li> Вес:{{details.weight_tobacco}}</li>
+    {%endfor%}
+
+{%endblock%}

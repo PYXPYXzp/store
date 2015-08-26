@@ -1,0 +1,17 @@
+{%extends 'products/base.html'%}
+{%block title%}Главная страница{%endblock%}
+{%block content%}
+
+    {% for details in detail %}
+
+        {%for companys in company%}
+            <li> {{companys.name_company}}</li>
+        {%endfor%}
+        <li> Модель:{{details.model}}</li>
+        <li> Цена: {{details.cost}} грн</li>
+        <li> Высота: {{details.height_shisha}} см</li>
+        <li> Тип чаши: {{details.type_bowls}}</li>
+
+    {%endfor%}
+
+{%endblock%}
