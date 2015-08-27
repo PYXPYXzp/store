@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^shisha/$', views.shisha_company, name = 'shisha_company'),
     url(r'^shisha/(?P<comp_id>\d+)/(?P<models_model>[\w\s]+)/$', views.detail_shisha, name='detailshisha'),
     url(r'^other/$', views.other_company, name = 'other_company'),
+    url(r'^other/(?P<comp_id>\d+)/(?P<type_product>[\w\s]+)/$', views.detail_other, name='detailother'),
     url(r'^product/(?P<comp_id>[0-9]+)/$', views.list, name = 'list'),
 
 ]

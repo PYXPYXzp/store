@@ -22,7 +22,8 @@ def shisha_company(request):
 
 def other_company(request):
     product_other = Company.objects.filter(product__type__type_product='Разное').distinct()
-    context = {'product_other': product_other}
+    types = Product.objects.filter(type__type_product='Разное')
+    context = {'product_other': product_other, 'types':types}
     return render(request, 'products/compotherlist.html', context)
 
 def list(request, comp_id):
@@ -41,3 +42,9 @@ def detail_shisha(request, models_model, comp_id):
     company = Company.objects.filter(pk=comp_id)
     context = {'detail':detail, 'company':company}
     return render(request, 'products/details_kal.html', context)
+
+def detail_other(request, comp_id, type_product):
+    detail = Product.objects.filter(type_product = type_product)
+    company = Company.objects.filter(pk=comp_id)
+    context = {'detail':detail, 'company':company}
+    return render(request, 'products/details_other.html', context)

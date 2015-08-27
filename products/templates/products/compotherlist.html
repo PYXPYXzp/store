@@ -1,9 +1,9 @@
 {%extends 'products/base.html'%}
-{%block title%}Фирма разное{%endblock%}
+{%block title%}Разное{%endblock%}
 {%block content%}
         {% for comp in product_other %}
-
-                <li><a href="{%url 'products:list' comp.id %}">{{ comp.name_company}}</a></li>
-
+                {%for type in types%}
+                <li><a href="{%url 'products:detailother' comp.id type.type_product %}">{{type.type_product}} {{comp.name_company}}</a></li>
+                {%endfor%}
         {% endfor %}
 {%endblock%}

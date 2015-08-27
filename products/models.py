@@ -19,6 +19,7 @@ class Product (models.Model):
     #image = models.ImageField()
     type = models.ForeignKey(Type, null=True, blank=True)
     company = models.ForeignKey(Company, null=True, blank=True)
+    type_product = models.CharField(max_length=200, null=True, blank=True)
     model = models.CharField(max_length=200, null=True, blank=True)
     flower = models.CharField(max_length=200, null=True, blank=True)
     weight_tobacco = models.IntegerField(default=0, null=True, blank=True)

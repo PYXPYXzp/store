@@ -1,0 +1,14 @@
+{%extends 'products/base.html'%}
+{%block title%}Разное{%endblock%}
+{%block content%}
+{{awd}}
+    {% for details in detail %}
+        <li> {{details.type_product}} </li>
+        {%for companys in company%}
+            <li> Фирма: {{companys.name_company}}</li>
+        {%endfor%}
+
+        <li> Цена: {{details.cost}} грн</li>
+    {%endfor%}
+
+{%endblock%}

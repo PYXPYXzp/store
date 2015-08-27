@@ -1,13 +1,12 @@
 {%extends 'products/base.html'%}
-{%block title%}Перечень вкусов{%endblock%}
+{%block title%}=){%endblock%}
 {%block content%}
     {% for models in model %}
         {%if models.flower%}
             <li><a href="{%url 'products:detailtobacco' comp_id models.flower%}">{{models.flower}}</a></li>
         {%elif models.model%}
             <li><a href="{%url 'products:detailshisha' comp_id models.model%}">{{models.model}}</a></li>
-        {%else%}
-            <li><a href="">{{models}}</a></li>
+
         {% endif %}
     {% endfor %}
 {%endblock%}
