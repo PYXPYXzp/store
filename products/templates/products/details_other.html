@@ -1,7 +1,7 @@
 {%extends 'products/base.html'%}
 {%block title%}Разное{%endblock%}
 {%block content%}
-{{awd}}
+
     {% for details in detail %}
         <li> {{details.type_product}} </li>
         {%for companys in company%}
@@ -10,5 +10,8 @@
 
         <li> Цена: {{details.cost}} грн</li>
     {%endfor%}
+<form action="order" method="post">
 
+    <input type="submit" value="Купить" />
+</form>
 {%endblock%}

@@ -9,5 +9,8 @@
         <li> Цена:{{details.cost}}</li>
         <li> Вес:{{details.weight_tobacco}}</li>
     {%endfor%}
+<form action="order" method="post">
 
+    <input type="submit" value="Купить" />
+</form>
 {%endblock%}
