@@ -1,7 +1,35 @@
-{%extends 'products/base.html'%}
-{%block title%}Табак{%endblock%}
+{% extends 'products/base.html' %}
+
+{% block title%}Табак{%endblock %}
+{% block ext_js %}
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+            $("#but1").click(function(){
+                var csrftoken = getCookie('csrftoken');
+                //var csrftoken = $.cookie("csrftoken");
+                $.ajax({
+                    url:"/cart/add_cart/",
+                    type : 'post',
+                    data: {test: '1234'},
+                    success: function(){
+                        alert('yahoo')
+                    },
+                    beforeSend: function (xhr, settings) {
+                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    }
+                })
+            });
+        });
+
+    </script>
+{% endblock ext_js %}
+
+
+
+
 {%block content%}
-<form action="{%url 'order:order_tobak'%}">
+
 
     {% for details in detail %}
         {%for companys in company%}
@@ -14,7 +42,10 @@
         <li> Вес:{{details.weight_tobacco}}</li>
 
     {%endfor%}
-    <input type="submit" value="Купить" />
 
-</form>
+    <li> Количество:
+    <input name="quantity" type="number"></li>
+    <li> <input id="but1" type="button" value="В корзину"/></li>
+
+
 {%endblock%}

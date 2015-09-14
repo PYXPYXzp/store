@@ -30,7 +30,12 @@ class Product (models.Model):
     characteristics = models.TextField(null=True, blank=True)
     specification = models.TextField(null=True, blank=True)
 
+
     def __unicode__(self):
         return self.characteristics
     def __unicode__(self):
         return unicode(self.type)
+
+class Bal_program(models.Model):
+    bal = models.IntegerField()
+    date = models.DateField(auto_now=True, auto_now_add=False)

@@ -1,0 +1,9 @@
+<head>
+    <title>Кальян</title>
+</head>
+<body>
+    {% for shisha in product_shisha %}
+        <li><a href="{% url 'products:shisha'%}">{{shisha.company }}</a></li>
+    {% endfor %}
+</body>
+</html>

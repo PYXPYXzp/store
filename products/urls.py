@@ -2,6 +2,7 @@ from django.conf.urls import url
 
 from products import views
 
+
 urlpatterns = [
     url(r'^$', views.index, name="index"),
     url(r'^tobacco/$', views.tobacco_company, name = 'tobacco_company'),

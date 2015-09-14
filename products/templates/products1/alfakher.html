@@ -1,0 +1,9 @@
+<head>
+    <title>AFZAL</title>
+</head>
+<body>
+    {% for alfakher in tobacco_alfakher %}
+        <li><a href="{% url 'products:alfakher'%}">{{alfakher.flower }}</a></li>
+    {% endfor %}
+</body>
+</html>
