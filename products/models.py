@@ -15,11 +15,13 @@ class Units(models.Model):
 class Company(models.Model):
     name_company = models.CharField(max_length=200, null=True, blank=True)
 
+    def __unicode__(self):
+        return self.name_company
+
 class Product (models.Model):
     #image = models.ImageField()
     type = models.ForeignKey(Type, null=True, blank=True)
     company = models.ForeignKey(Company, null=True, blank=True)
-    type_product = models.CharField(max_length=200, null=True, blank=True)
     model = models.CharField(max_length=200, null=True, blank=True)
     flower = models.CharField(max_length=200, null=True, blank=True)
     weight_tobacco = models.IntegerField(default=0, null=True, blank=True)
@@ -35,6 +37,9 @@ class Product (models.Model):
         return self.characteristics
     def __unicode__(self):
         return unicode(self.type)
+    def __unicode__(self):
+        return unicode(self.units)
+
 
 class Bal_program(models.Model):
     bal = models.IntegerField()

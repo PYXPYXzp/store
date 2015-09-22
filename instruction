@@ -1,0 +1,7 @@
+	Настройка проекта
+1. git clone (проект)
+2. установка venv: sudo pip install virtualenv.
+3. создаем папку venv: virtualenv env
+4. устанавливаем джангу: скачиваем архив последней джанги, разархивируем ее, делаем все с (. venv/bin/activate) далее заходим в папку с джангой и вводим команду python setup.py install
+
+
