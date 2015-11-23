@@ -13,10 +13,10 @@ class Person (models.Model):
     email = models.EmailField()
 
 class Order (models.Model):
-    date_order = models.DateTimeField('date published')
+    date_order = models.DateTimeField(auto_now=True, auto_now_add=False)
     delivery = models.ForeignKey(Delivery)
     person = models.ForeignKey(Person)
     total_cost = models.IntegerField(default=0, null=True, blank=True)
-    product = models.ForeignKey("products.Product")
+    product = models.ForeignKey("products.Product",null=True, blank=True)
 
 

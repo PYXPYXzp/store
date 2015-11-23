@@ -2,23 +2,27 @@
 
 {% block title%}Табак{%endblock %}
 {% block ext_js %}
+    {% csrf_token %}
     <script type="text/javascript">
-        
+
 
         $(document).ready(function(){
             $("#but1").click(function(){
                 var csrftoken = getCookie('csrftoken');
                 //var csrftoken = $.cookie("csrftoken");
+
+
                 $.ajax({
                     url:"/cart/add_cart/",
                     type : 'post',
-                    data: {test: '1234'},
+                    data: {data: 'data'},
                     success: function(){
-                        alert('yahoo')
+                        alert("Товар добавлен в корзину")
                     },
                     beforeSend: function (xhr, settings) {
                         xhr.setRequestHeader("X-CSRFToken", csrftoken);
                     }
+
                 })
             });
         });
@@ -41,8 +45,11 @@
         <li> {{details.flower}}</li>
         <li> Цена:{{details.cost}}</li>
         <li> Вес:{{details.weight_tobacco}}</li>
+        data="{{ detail.id  }}asd"
+
 
     {%endfor%}
+
 
     <li> Количество:
     <input name="quantity" type="number"></li>
