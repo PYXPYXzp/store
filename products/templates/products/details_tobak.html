@@ -7,7 +7,10 @@
 
 
         $(document).ready(function(){
+
             $("#but1").click(function(){
+                var quantity = $('#quantity').val()
+                var product_id =$('#id ').val()
                 var csrftoken = getCookie('csrftoken');
                 //var csrftoken = $.cookie("csrftoken");
 
@@ -15,7 +18,9 @@
                 $.ajax({
                     url:"/cart/add_cart/",
                     type : 'post',
-                    data: {data: 'data'},
+                    data: {quantity:quantity,
+                        product_id:product_id
+                    },
                     success: function(){
                         alert("Товар добавлен в корзину")
                     },
@@ -34,8 +39,6 @@
 
 
 {%block content%}
-
-
     {% for details in detail %}
         {%for companys in company%}
             <li> {{companys.name_company}}</li>
@@ -45,14 +48,12 @@
         <li> {{details.flower}}</li>
         <li> Цена:{{details.cost}}</li>
         <li> Вес:{{details.weight_tobacco}}</li>
-        data="{{ detail.id  }}asd"
-
-
+        <input id="id" type='hidden' value="{{ details.id }}">
     {%endfor%}
 
-
     <li> Количество:
-    <input name="quantity" type="number"></li>
+
+    <input id="quantity" name="quantity" type="number"></li>
     <li> <input id="but1" type="button" value="В корзину"/></li>
 
 

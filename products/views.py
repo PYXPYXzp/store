@@ -34,7 +34,7 @@ def list(request, comp_id):
 def detail_tobacco(request, models_flower, comp_id):
     detail = Product.objects.filter(flower = models_flower)
     company = Company.objects.filter(pk=comp_id)
-    context = {'detail':detail, 'company':company}
+    context = {'detail':detail, 'company':company, 'id':id}
     return render(request, 'products/details_tobak.html', context)
 
 def detail_shisha(request, models_model, comp_id):
