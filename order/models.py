@@ -4,6 +4,9 @@ from django.db import models
 class Delivery (models.Model):
     type_delivery = models.CharField(max_length=200, null=True, blank=True)
 
+    def __unicode__(self):
+        return self.type_delivery
+
 class Person (models.Model):
     first_name = models.CharField(max_length=200, null=True, blank=True)
     last_name = models.CharField(max_length=200, null=True, blank=True)

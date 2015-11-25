@@ -1,44 +1,46 @@
 {% extends 'products/base.html' %}
 
 {% block title%}Табак{%endblock %}
-{% block ext_js %}
-    {% csrf_token %}
-    <script type="text/javascript">
-
-
-        $(document).ready(function(){
-
-            $("#but1").click(function(){
-                var quantity = $('#quantity').val()
-                var product_id =$('#id ').val()
-                var csrftoken = getCookie('csrftoken');
-                //var csrftoken = $.cookie("csrftoken");
-
-
-                $.ajax({
-                    url:"/cart/add_cart/",
-                    type : 'post',
-                    data: {quantity:quantity,
-                        product_id:product_id
-                    },
-                    success: function(){
-                        alert("Товар добавлен в корзину")
-                    },
-                    beforeSend: function (xhr, settings) {
-                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
-                    }
-
-                })
-            });
-        });
-
-    </script>
-{% endblock ext_js %}
+{#{% block ext_js %}#}
+{#    {% csrf_token %}#}
+{#    <script type="text/javascript">#}
+{##}
+{##}
+{#        $(document).ready(function(){#}
+{##}
+{#            $("#but1").click(function(){#}
+{#                var quantity = $('#quantity').val()#}
+{#                var product_id =$('#id ').val()#}
+{#                var csrftoken = getCookie('csrftoken');#}
+{#                //var csrftoken = $.cookie("csrftoken");#}
+{##}
+{##}
+{#                $.ajax({#}
+{#                    url:"order",#}
+{#                    type : 'post',#}
+{#                    data: {quantity:quantity,#}
+{#                        product_id:product_id#}
+{#                    },#}
+{#                    success: function(){#}
+{##}
+{#                    },#}
+{#                    beforeSend: function (xhr, settings) {#}
+{#                        xhr.setRequestHeader("X-CSRFToken", csrftoken);#}
+{#                    }#}
+{##}
+{#                })#}
+{#            });#}
+{#        });#}
+{##}
+{#    </script>#}
+{#{% endblock ext_js %}#}
 
 
 
 
 {%block content%}
+    <form action="{% url 'order:order_tobak' %}" method="post">
+    {% csrf_token %}
     {% for details in detail %}
         {%for companys in company%}
             <li> {{companys.name_company}}</li>
@@ -48,13 +50,13 @@
         <li> {{details.flower}}</li>
         <li> Цена:{{details.cost}}</li>
         <li> Вес:{{details.weight_tobacco}}</li>
-        <input id="id" type='hidden' value="{{ details.id }}">
+        <input  type='hidden' name="product_id" value="{{ details.id }}">
     {%endfor%}
 
     <li> Количество:
 
-    <input id="quantity" name="quantity" type="number"></li>
-    <li> <input id="but1" type="button" value="В корзину"/></li>
-
+    <input id="quantity" name="quantity" type="number" value="1"></li>
+    <li> <input id="but1" type="submit" value="Купить"/></li>
+</form>
 
 {%endblock%}
