@@ -11,7 +11,11 @@ def order_tobacco(request):
     detail = Product.objects.get(pk=request.POST.get('product_id'))
     quantity = request.POST['quantity']
     delivery =  get_list_or_404(Delivery)
-    # detail = Product.objects.filter(type_product = detail_id)
-    # company = Company.objects.filter(pk=comp_id)
     context = {'detail':detail, 'quantity':quantity,'delivery':delivery}
     return render(request, 'order/order_tobak.html', context)
+
+
+def add_info(request):
+    first_name = request.POST['first_name']
+    last_name = request.POST['last_name']
+
