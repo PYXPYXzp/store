@@ -1,21 +1,36 @@
-from django.shortcuts import get_list_or_404, render
+from django.shortcuts import get_list_or_404, render, redirect
+
 
 from order.models import Person
 from order.models import Order
 from order.models import Delivery
 from products.models import Product
 from products.models import Company
+from .forms import FormPerson
 
 
-def order_tobacco(request):
+
+def order(request):
     detail = Product.objects.get(pk=request.POST.get('product_id'))
     quantity = request.POST['quantity']
     delivery =  get_list_or_404(Delivery)
-    context = {'detail':detail, 'quantity':quantity,'delivery':delivery}
+    if request.method == 'POST':
+        form = FormPerson(request.POST)
+
+
+    context = {'detail':detail, 'quantity':quantity,'delivery':delivery,'form':form}
     return render(request, 'order/order_tobak.html', context)
 
 
 def add_info(request):
-    first_name = request.POST['first_name']
-    last_name = request.POST['last_name']
-
+     if request.method == 'POST':
+        form = FormPerson(request.POST)
+        if form.is_valid():
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            email = form.cleaned_data['email']
+            Person.objects.create(
+                first_name = first_name,
+                last_name = last_name,
+                email = email,)
+            return redirect('http://127.0.0.1:8000/index/')

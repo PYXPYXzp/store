@@ -39,7 +39,7 @@
 
 
 {%block content%}
-    <form action="{% url 'order:order_tobak' %}" method="post">
+    <form action="{% url 'order:order' %}" method="post">
     {% csrf_token %}
     {% for details in detail %}
         {%for companys in company%}

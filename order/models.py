@@ -1,6 +1,7 @@
 from django.db import models
 #from products.models import Product
 
+
 class Delivery (models.Model):
     type_delivery = models.CharField(max_length=200, null=True, blank=True)
 

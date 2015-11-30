@@ -3,22 +3,24 @@
 {% block title%}Оформление заказа{%endblock %}
 
 {%block content%}
-    <form action="{% url 'order:order_tobak' %}" method="post">
+    <form action="{% url 'order:add_info' %}" method="post">
     {% csrf_token %}
     <li>{{ detail.company }} {{ detail.flower }}</li>
     <li>Количетсво: {{ quantity }}</li>
-    <li><input name="first_name", placeholder="Введите Имя"></li>
-   <li> <input name="last_name", placeholder="Введите Фамилию"></li>
-    <li><input type="email", name="email", placeholder="Введите email"></li>
-    <li><input type="tel", name="tel_numb", placeholder="Введите номер телефона"></li>
-    <li><input name="city", placeholder="Укажите город"></li>
-    <li><input type="text", placeholder="Комментарий к заказу"> </li>
-    {% for deliveres in delivery%}
+{#    <li><input id=="first_name", name="first_name", placeholder="Введите Имя"></li>#}
+{#   <li> <input name="last_name", placeholder="Введите Фамилию"></li>#}
+{#    <li><input type="email", name="email", placeholder="Введите email"></li>#}
+{#    <li><input type="tel", name="tel_numb", placeholder="Введите номер телефона"></li>#}
+{#    <li><input name="city", placeholder="Укажите город"></li>#}
+{#    <li><input type="text", placeholder="Комментарий к заказу"> </li>#}
 
+
+    {{ form.as_p }}
+    {% for deliveres in delivery%}
         <li><input type="radio", name="delivery", id="delivery{{ forloop.counter }}", value="
         {{ delivery.type_delivery}}"> {{ deliveres.type_delivery }}</li>
     {% endfor %}
-
+    <li> <input id="but1" type="submit" value="Оформить"/></li>
     </form>
 
 {%endblock%}
