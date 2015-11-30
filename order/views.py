@@ -16,8 +16,6 @@ def order(request):
     delivery =  get_list_or_404(Delivery)
     if request.method == 'POST':
         form = FormPerson(request.POST)
-
-
     context = {'detail':detail, 'quantity':quantity,'delivery':delivery,'form':form}
     return render(request, 'order/order_tobak.html', context)
 
@@ -29,8 +27,18 @@ def add_info(request):
             first_name = form.cleaned_data['first_name']
             last_name = form.cleaned_data['last_name']
             email = form.cleaned_data['email']
+            tel_namb = form.cleaned_data['tel_namb']
+            comment = form.cleaned_data['comment']
+            city = form.cleaned_data['city']
             Person.objects.create(
                 first_name = first_name,
                 last_name = last_name,
-                email = email,)
+                email = email,
+                tel_namb = tel_namb,
+                comment = comment,
+                city = city,
+                )
+            Order.objects.create(
+                
+            )
             return redirect('http://127.0.0.1:8000/index/')
