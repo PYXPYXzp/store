@@ -20,6 +20,8 @@
         <li><input type="radio", name="delivery", id="delivery{{ forloop.counter }}", value="
         {{ delivery.type_delivery}}"> {{ deliveres.type_delivery }}</li>
     {% endfor %}
+    <li>Комментарий к заказу: </li>
+        <li><textarea name="comment" cols="30" rows="5" maxlength="300" ></textarea></li>
     <li> <input id="but1" type="submit" value="Оформить"/></li>
     </form>
 

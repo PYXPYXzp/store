@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.shortcuts import get_list_or_404, render, redirect
 
 
@@ -22,13 +23,13 @@ def order(request):
 
 def add_info(request):
      if request.method == 'POST':
+        comment = request.POST['comment']
         form = FormPerson(request.POST)
         if form.is_valid():
             first_name = form.cleaned_data['first_name']
             last_name = form.cleaned_data['last_name']
             email = form.cleaned_data['email']
             tel_namb = form.cleaned_data['tel_namb']
-            comment = form.cleaned_data['comment']
             city = form.cleaned_data['city']
             Person.objects.create(
                 first_name = first_name,
@@ -38,7 +39,7 @@ def add_info(request):
                 comment = comment,
                 city = city,
                 )
-            Order.objects.create(
-                
-            )
+            # Order.objects.create(
+            #
+            # )
             return redirect('http://127.0.0.1:8000/index/')
