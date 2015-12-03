@@ -24,6 +24,7 @@ def order(request):
 def add_info(request):
      if request.method == 'POST':
         comment = request.POST['comment']
+        delivery = request.POST['delivery']
         form = FormPerson(request.POST)
         if form.is_valid():
             first_name = form.cleaned_data['first_name']
@@ -39,7 +40,8 @@ def add_info(request):
                 comment = comment,
                 city = city,
                 )
-            # Order.objects.create(
-            #
-            # )
+            Order.objects.create(
+                delivery = delivery,
+                person = Person.objects.get(email= email),
+            )
             return redirect('http://127.0.0.1:8000/index/')

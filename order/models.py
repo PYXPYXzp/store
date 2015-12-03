@@ -1,5 +1,7 @@
 from django.db import models
-#from products.models import Product
+from products.models import Product
+from django.forms import ModelForm
+from cart.models import CartItem
 
 
 class Delivery (models.Model):
@@ -17,10 +19,13 @@ class Person (models.Model):
     email = models.EmailField()
 
 class Order (models.Model):
-    date_order = models.DateTimeField(auto_now=True, auto_now_add=False)
     delivery = models.ForeignKey(Delivery)
     person = models.ForeignKey(Person)
-    total_cost = models.IntegerField(default=0, null=True, blank=True)
-    product = models.ForeignKey("products.Product",null=True, blank=True)
+    order = models.ForeignKey(CartItem)
 
+
+class DetailOrder(ModelForm):
+     class Meta:
+         model = Order
+         fields = ['delivery', 'person']
 

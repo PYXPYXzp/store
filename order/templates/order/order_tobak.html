@@ -6,6 +6,7 @@
     <form action="{% url 'order:add_info' %}" method="post">
     {% csrf_token %}
     <li>{{ detail.company }} {{ detail.flower }}</li>
+    <input  type='hidden' name="product_id" value="{{ details.id }}">
     <li>Количетсво: {{ quantity }}</li>
 {#    <li><input id=="first_name", name="first_name", placeholder="Введите Имя"></li>#}
 {#   <li> <input name="last_name", placeholder="Введите Фамилию"></li>#}
