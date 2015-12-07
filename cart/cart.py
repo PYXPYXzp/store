@@ -3,7 +3,7 @@ import decimal
 import random
 
 from django.shortcuts import get_object_or_404
-from cart.models import CartItem
+from models import CartItem
 from products.models import Product
 
 CART_ID_SESSION_KEY = 'cart_id'

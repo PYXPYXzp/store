@@ -1,10 +1,11 @@
+# -*- coding: utf-8 -*-
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 
-from cart import cart
+import cart
 
-def show_cart(request, template_name = cart/cart.html):
+def show_cart(request, template_name = 'cart/cart.html'):
     if request.method == 'POST':
         postdata = request.POST.copy()
         if postdata['submit']=='Remove':

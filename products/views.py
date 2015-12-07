@@ -1,11 +1,12 @@
-
 # -*- coding: utf-8 -*-
+
 from django.shortcuts import get_object_or_404, render
 
 from django.http import HttpResponse
 from products.models import Type
 from products.models import Product
 from products.models import Company
+from cart.forms import ProductAddToCartForm
 
 def index(request):
     return render(request, 'products/main.html')
@@ -34,7 +35,7 @@ def list(request, comp_id):
 def detail_tobacco(request, models_flower, comp_id):
     detail = Product.objects.filter(flower = models_flower)
     company = Company.objects.filter(pk=comp_id)
-    context = {'detail':detail, 'company':company, 'id':id}
+    context = {'detail':detail, 'company':company, 'id':id, 'ProductAddToCartForm':ProductAddToCartForm}
     return render(request, 'products/details_tobak.html', context)
 
 def detail_shisha(request, models_model, comp_id):

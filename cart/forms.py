@@ -1,8 +1,9 @@
+# -*- coding: utf-8 -*-
 from django import forms
 
 
 class ProductAddToCartForm(forms.Form):
-	quantity = forms.IntegerField(widget=forms.TextInput(attrs={'size':'2',
+	quantity = forms.IntegerField(widget=forms.TextInput(attrs={'size':'3',
 		'value':'1', 'class':'input-small', 'maxlength':'5'}),
 		error_messages={'invalid':'Введите правильное количество'}, min_value=1, label='Количество')
 	product_slug = forms.CharField(widget=forms.HiddenInput())

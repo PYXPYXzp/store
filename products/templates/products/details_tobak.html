@@ -39,8 +39,9 @@
 
 
 {%block content%}
-    <form action="{% url 'order:order' %}" method="post">
+    <form action="{% url '/add_to_cart/' %}" method="post">
     {% csrf_token %}
+
     {% for details in detail %}
         {%for companys in company%}
             <li> {{companys.name_company}}</li>
@@ -51,12 +52,10 @@
         <li> Цена:{{details.cost}}</li>
         <li> Вес:{{details.weight_tobacco}}</li>
         <input  type='hidden' name="product_id" value="{{ details.id }}">
+        {{ ProductAddToCartForm }}
     {%endfor%}
 
-    <li> Количество:
-
-    <input id="quantity" name="quantity" type="number" value="1"></li>
-    <li> <input id="but1" type="submit" value="Купить"/></li>
+    <li> <input id="but1" type="submit" value="Добавить в корзину"/></li>
 </form>
 
 {%endblock%}
