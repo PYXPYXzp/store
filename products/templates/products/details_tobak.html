@@ -1,46 +1,46 @@
 {% extends 'products/base.html' %}
 
 {% block title%}Табак{%endblock %}
-{#{% block ext_js %}#}
-{#    {% csrf_token %}#}
-{#    <script type="text/javascript">#}
-{##}
-{##}
-{#        $(document).ready(function(){#}
-{##}
-{#            $("#but1").click(function(){#}
-{#                var quantity = $('#quantity').val()#}
-{#                var product_id =$('#id ').val()#}
-{#                var csrftoken = getCookie('csrftoken');#}
-{#                //var csrftoken = $.cookie("csrftoken");#}
-{##}
-{##}
-{#                $.ajax({#}
-{#                    url:"order",#}
-{#                    type : 'post',#}
-{#                    data: {quantity:quantity,#}
-{#                        product_id:product_id#}
-{#                    },#}
-{#                    success: function(){#}
-{##}
-{#                    },#}
-{#                    beforeSend: function (xhr, settings) {#}
-{#                        xhr.setRequestHeader("X-CSRFToken", csrftoken);#}
-{#                    }#}
-{##}
-{#                })#}
-{#            });#}
-{#        });#}
-{##}
-{#    </script>#}
-{#{% endblock ext_js %}#}
+{% block ext_js %}
+    {% csrf_token %}
+    <script type="text/javascript">
+
+
+        $(document).ready(function(){
+
+            $("#but1").click(function(){
+                var quantity = $('#id_quantity').val()
+                var product_id =$('#product_id').val()
+                var csrftoken = getCookie('csrftoken');
+                //var csrftoken = $.cookie("csrftoken");
+
+
+                $.ajax({
+                    url:'/cart/add_to_cart/',
+                    type : 'post',
+                    data: {quantity:quantity,
+                        product_id:product_id
+                    },
+                    success: function(){
+
+                    },
+                    beforeSend: function (xhr, settings) {
+                       xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    }
+
+                })
+            });
+        });
+
+    </script>
+{% endblock ext_js %}
 
 
 
 
 {%block content%}
-    <form action="{% url '/add_to_cart/' %}" method="post">
-    {% csrf_token %}
+    <!--<form action="{% url 'cart:add_to_cart' %}" method="post">-->
+    <!--{% csrf_token %}-->
 
     {% for details in detail %}
         {%for companys in company%}
@@ -51,11 +51,12 @@
         <li> {{details.flower}}</li>
         <li> Цена:{{details.cost}}</li>
         <li> Вес:{{details.weight_tobacco}}</li>
-        <input  type='hidden' name="product_id" value="{{ details.id }}">
+        <input  type='hidden' id = "product_id" name="product_id" value="{{ details.id }}">
         {{ ProductAddToCartForm }}
     {%endfor%}
 
     <li> <input id="but1" type="submit" value="Добавить в корзину"/></li>
-</form>
+    <li> <input id="but2" type="button" value="Перейти в корзину"/></li>
+<!--</form>-->
 
 {%endblock%}

@@ -12,19 +12,19 @@ class CartItem(models.Model):
     class Meta:
         ordering = ['date']
 
-    @property
+
     def total(self):
         return self.quantity * self.product.cost
 
-    @property
+
     def name(self):
         return self.product.name
 
-    @property
+
     def price(self):
         return self.product.cost
 
-    @property
+
     def augment_quantity(self, quantity):
          self.quantity = self.quantity + int(quantity)
          self.save()

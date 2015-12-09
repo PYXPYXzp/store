@@ -1,15 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'products/base.html' %}
+
 <head>
 
 
-    <meta charset="UTF-8">
-    <title></title>
+{% block title%}Табак{%endblock %}
 </head>
 <body>
+{%block content%}
 <form method="post" action="">
     {% csrf_token %}
-    <li> {{ ProductAddToCartForm }}</li>
+    {%for items in cart_item%}
+    <li>{{items.product.company}} {{items.product.flower}} {{items.quantity}}
+    {{items.product.cost}}</li>
+
+    {%endfor%}
+    ИТОГО: {{cart_subtotal}}
+    {%endblock%}
 </form>
 
 </body>
