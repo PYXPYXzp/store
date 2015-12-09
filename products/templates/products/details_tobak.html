@@ -21,14 +21,16 @@
                     data: {quantity:quantity,
                         product_id:product_id
                     },
-                    success: function(){
 
-                    },
                     beforeSend: function (xhr, settings) {
                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
                     }
 
                 })
+            });
+            $("#but2").click(function(){
+                location.href = '/cart/';
+
             });
         });
 

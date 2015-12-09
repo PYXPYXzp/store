@@ -6,17 +6,59 @@
 {% block title%}Табак{%endblock %}
 </head>
 <body>
-{%block content%}
-<form method="post" action="">
+{% block ext_js %}
     {% csrf_token %}
+    <script type="text/javascript">
+
+
+        $(document).ready(function(){
+            $('#but1').click(function(){
+
+                var csrftoken = getCookie('csrftoken');
+            $.ajax({
+                url: '/cart/empty_cart/',
+                success: function (){
+                    location.href = '/cart/';
+                },
+                beforeSend: function (xhr, settings) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            })
+            });
+            $('#but2').click(function(){
+                var id_product = $('#id_product').val()
+                var csrftoken = getCookie('csrftoken');
+                alert('button press')
+            $.ajax({
+                url:'/cart/remove_item/',
+                type:'post',
+                data:{id_product},
+
+                success: function (){
+                    location.href = '/cart/';
+                    },
+                beforeSend: function (xhr, settings) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            })
+            });
+        });
+    </script>
+
+
+{% endblock ext_js %}
+{%block content%}
+
     {%for items in cart_item%}
     <li>{{items.product.company}} {{items.product.flower}} {{items.quantity}}
-    {{items.product.cost}}</li>
-
+    {{items.product.cost}}
+        <input id="id_product" type="hidden" value={{items.id}}>
+        <input id="but2" type="submit" value="del"></li>
     {%endfor%}
     ИТОГО: {{cart_subtotal}}
+    <li> <input id="but1" type="button" value="Пустая корзина"/></li>
     {%endblock%}
-</form>
+
 
 </body>
 </html>

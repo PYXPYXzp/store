@@ -76,11 +76,13 @@ def update_cart(request):
 
 def remove_from_cart(request):
     postdata = request.POST.copy()
-    product_id = postdata['product_id']
+    product_id = postdata['id_product']
     cart_item = get_single_item(request, product_id)
     if cart_item:
         cart_item.delete()
+    return JsonResponse({'cart_item':'remove'})
 
 def empty_cart(request):
     user_cart = get_cart_items(request)
     user_cart.delete()
+    return JsonResponse({'user_cart':'cart_empty'})
