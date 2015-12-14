@@ -17,8 +17,8 @@
 
     {{ form.as_p }}
     {% for deliveres in delivery%}
-        <li><input type="radio" name="delivery" id="delivery{{ forloop.counter }}" value="
-        {{ deliveres.type_delivery}}"> {{ deliveres.type_delivery }}</li>
+        <li><input type="radio" name="delivery" id="delivery{{ forloop.counter }}" value="{{deliveres.type_delivery}}">
+            {{deliveres.type_delivery }}</li>
     {% endfor %}
     <li>Комментарий к заказу: </li>
         <li><textarea name="comment" cols="30" rows="5" maxlength="300" ></textarea></li>

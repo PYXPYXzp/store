@@ -18,6 +18,7 @@ class Person (models.Model):
     comment = models.TextField(null=True, blank=True)
     email = models.EmailField()
 
+
 class Order (models.Model):
     delivery = models.ForeignKey(Delivery)
     person = models.ForeignKey(Person)
