@@ -1,6 +1,6 @@
 *.pyc
 venv/
-*.txt
 *.gz
 *.xml
+.idea/
 products/migrations/
