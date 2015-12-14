@@ -3,4 +3,3 @@ venv/
 *.gz
 *.xml
 .idea/
-products/migrations/
