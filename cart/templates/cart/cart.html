@@ -25,10 +25,9 @@
                 }
             })
             });
-            $('#but2').click(function(){
+            $('.but2').click(function(){
                 var id_product = $('#id_product').val()
                 var csrftoken = getCookie('csrftoken');
-                alert('button press')
             $.ajax({
                 url:'/cart/remove_item/',
                 type:'post',
@@ -48,15 +47,20 @@
 
 {% endblock ext_js %}
 {%block content%}
-
     {%for items in cart_item%}
     <li>{{items.product.company}} {{items.product.flower}} {{items.quantity}}
     {{items.product.cost}}
         <input id="id_product" type="hidden" value={{items.id}}>
-        <input id="but2" type="submit" value="del"></li>
+        <input class="but2" type="submit" value="del"></li>
     {%endfor%}
     ИТОГО: {{cart_subtotal}}
     <li> <input id="but1" type="button" value="Пустая корзина"/></li>
+    <form action="{% url 'order:order' %}" method="post">
+        {% csrf_token %}
+            <input id="but3" type="submit" value="Оформить заказ">
+        <input id="cart_id" type="hidden" name="cart_id" value={{cart_id}}>
+        <input id="cart_subtotal" type="hidden" name="cart_subtotal" value={{cart_subtotal}}>
+    </form>
     {%endblock%}
 
 

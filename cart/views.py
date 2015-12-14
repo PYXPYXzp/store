@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 
@@ -13,7 +13,9 @@ def show_cart(request, template_name = 'cart/cart.html'):
         if postdata['submit']=='Update':
             cart.update_cart(request)
     cart_item = cart.get_cart_items(request)
+    cart_id = cart._cart_id(request)
     page_title = 'Корзина'
     cart_subtotal = cart.cart_subtotal(request)
-    return render_to_response(template_name, locals(), context_instance=RequestContext(request))
+    context = {'cart_item': cart_item, 'cart_id': cart_id, 'cart_subtotal': cart_subtotal}
+    return render(request, template_name, context)
 

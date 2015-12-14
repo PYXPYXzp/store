@@ -58,7 +58,10 @@
     {%endfor%}
 
     <li> <input id="but1" type="submit" value="Добавить в корзину"/></li>
-    <li> <input id="but2" type="button" value="Перейти в корзину"/></li>
+    <form action="{% url 'cart:show_cart' %}" method="post">
+        {% csrf_token %}
+            <li> <input id="but2" type="button" value="Перейти в корзину"/></li>
+    </form>
 <!--</form>-->
 
 {%endblock%}

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.db import models
 from products.models import Product
 from django.forms import ModelForm

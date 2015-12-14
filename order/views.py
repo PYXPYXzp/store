@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import get_list_or_404, render, redirect
+from django.shortcuts import get_list_or_404, render, redirect, get_object_or_404
 
 
 from order.models import Person
@@ -8,23 +8,27 @@ from order.models import Delivery
 from products.models import Product
 from products.models import Company
 from .forms import FormPerson
+from cart.models import CartItem
 
 
 
 def order(request):
-    detail = Product.objects.get(pk=request.POST.get('product_id'))
-    quantity = request.POST['quantity']
+    cart_id = request.POST.get('cart_id')
+    cart_subtotal = request.POST.get('cart_subtotal')
     delivery =  get_list_or_404(Delivery)
     if request.method == 'POST':
         form = FormPerson(request.POST)
-    context = {'detail':detail, 'quantity':quantity,'delivery':delivery,'form':form}
+    context = {'delivery': delivery, 'form': form, 'cart_id': cart_id, 'cart_subtotal': cart_subtotal}
     return render(request, 'order/order_tobak.html', context)
 
 
 def add_info(request):
      if request.method == 'POST':
-        comment = request.POST['comment']
-        delivery = request.POST['delivery']
+        postdata = request.POST.copy()
+        comment = postdata.get('comment')
+        delivery = postdata.get('delivery')
+        print delivery
+        cart_id = postdata.get('cart_id')
         form = FormPerson(request.POST)
         if form.is_valid():
             first_name = form.cleaned_data['first_name']
@@ -40,8 +44,12 @@ def add_info(request):
                 comment = comment,
                 city = city,
                 )
-            Order.objects.create(
-                delivery = delivery,
-                person = Person.objects.get(email= email),
-            )
-            return redirect('http://127.0.0.1:8000/index/')
+        delivery = Delivery.objects.get(type_delivery=delivery)
+        person = get_object_or_404(Person, email=email, tel_namb=tel_namb)
+        order1 = CartItem.objects.get(cart_id=cart_id)
+        ord = Order()
+        ord.delivery = delivery
+        ord.person = person
+        ord.order = order1
+        ord.save()
+        return redirect('http://127.0.0.1:8000/index/')

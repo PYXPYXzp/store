@@ -47,7 +47,7 @@ def add_to_cart(request):
         ci.quantity = quantity
         ci.cart_id = _cart_id(request)
         ci.save()
-        return JsonResponse({'product in cart':product_in_cart})
+        return JsonResponse({'product in cart': product_in_cart, 'cart_id': ci.cart_id})
 
 def cart_distinct_item_count(request):
     return get_cart_items(request).count()

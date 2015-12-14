@@ -29,3 +29,5 @@ class DetailOrder(ModelForm):
          model = Order
          fields = ['delivery', 'person']
 
+def __unicode__(self):
+                   return self.type_delivery
