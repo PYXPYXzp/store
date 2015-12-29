@@ -19,7 +19,7 @@ class Company(models.Model):
         return self.name_company
 
 class Product (models.Model):
-    #image = models.ImageField()
+    image = models.ImageField()
     type = models.ForeignKey(Type, null=True, blank=True)
     company = models.ForeignKey(Company, null=True, blank=True)
     model = models.CharField(max_length=200, null=True, blank=True)

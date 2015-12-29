@@ -1,9 +1,11 @@
-from django.conf.urls import url
+from django.conf.urls import url, patterns
+from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from products import views
 
-
-urlpatterns = [
+urlpatterns = patterns('',
     url(r'^$', views.index, name="index"),
     url(r'^tobacco/$', views.tobacco_company, name = 'tobacco_company'),
     url(r'^tobacco/(?P<comp_id>\d+)/(?P<models_flower>[\w\s]+)/$', views.detail_tobacco, name='detailtobacco'),
@@ -13,4 +15,4 @@ urlpatterns = [
     url(r'^other/(?P<comp_id>\d+)/(?P<type_product>[\w\s]+)/$', views.detail_other, name='detailother'),
     url(r'^product/(?P<comp_id>[0-9]+)/$', views.list, name = 'list'),
 
-]
+)

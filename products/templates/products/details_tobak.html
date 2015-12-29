@@ -43,8 +43,8 @@
 {%block content%}
     <!--<form action="{% url 'cart:add_to_cart' %}" method="post">-->
     <!--{% csrf_token %}-->
-
     {% for details in detail %}
+        <img src="{{details.image.url}}"/>
         {%for companys in company%}
             <li> {{companys.name_company}}</li>
 
