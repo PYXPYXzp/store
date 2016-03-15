@@ -1,12 +1,28 @@
 {%extends 'products/base.html'%}
 {%block title%}=){%endblock%}
 {%block content%}
-    {% for models in model %}
-        {%if models.flower%}
-            <li><a href="{%url 'products:detailtobacco' comp_id models.flower%}">{{models.flower}}</a></li>
-        {%elif models.model%}
-            <li><a href="{%url 'products:detailshisha' comp_id models.model%}">{{models.model}}</a></li>
+   <div>
+       <center>
+       <table border="0" width="600px" height="500px" cellspacing="0">
 
-        {% endif %}
-    {% endfor %}
+           {% for models in model %}
+           {%if models.flower%}
+           <tr>
+               <td valign="bottom" rowspan="2">
+                   <p>
+                   <a href="{%url 'products:detailtobacco' comp_id models.flower%}">{{models.flower}}
+                   <img src="{{models.image.url}}" width="150px" height="150px" />
+                   </a>
+                   </p>
+               {%elif models.model%}
+               <!--<li><a href="{%url 'products:detailshisha' comp_id models.model%}">{{models.model}}</a></li>-->
+               </td>
+           </tr>
+           {{random}}
+           {% endif %}
+           {% endfor %}
+
+       </table>
+       </center>
+   </div>
 {%endblock%}

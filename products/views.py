@@ -1,15 +1,19 @@
 # -*- coding: utf-8 -*-
 
 from django.shortcuts import get_object_or_404, render
+import random
 
 from django.http import HttpResponse
 from products.models import Type
 from products.models import Product
 from products.models import Company
 from cart.forms import ProductAddToCartForm
+import product
 
 def index(request):
-    return render(request, 'products/main.html')
+    random_prods = Product.objects.filter(type__type_product='Табак').order_by('?')[:6]
+    context = {'random_prods': random_prods}
+    return render(request, 'products/main.html', context)
 
 def tobacco_company(request):
     companytob = Company.objects.filter(product__type__type_product ='Табак').distinct()
@@ -33,19 +37,19 @@ def list(request, comp_id):
     return render(request, 'products/list.html', context)
 
 def detail_tobacco(request, models_flower, comp_id):
-    detail = Product.objects.filter(flower = models_flower)
+    detail = Product.objects.filter(flower=models_flower)
     company = Company.objects.filter(pk=comp_id)
-    context = {'detail':detail, 'company':company, 'id':id, 'ProductAddToCartForm':ProductAddToCartForm}
+    context = {'detail': detail, 'company': company, 'id':id, 'ProductAddToCartForm':ProductAddToCartForm}
     return render(request, 'products/details_tobak.html', context)
 
 def detail_shisha(request, models_model, comp_id):
-    detail = Product.objects.filter(model = models_model)
+    detail = Product.objects.filter(model=models_model)
     company = Company.objects.filter(pk=comp_id)
     context = {'detail':detail, 'company':company}
     return render(request, 'products/details_kal.html', context)
 
 def detail_other(request, comp_id, type_product):
-    detail = Product.objects.filter(type_product = type_product)
+    detail = Product.objects.filter(type_product=type_product)
     company = Company.objects.filter(pk=comp_id)
-    context = {'detail':detail, 'company':company}
+    context = {'detail': detail, 'company': company}
     return render(request, 'products/details_other.html', context)

@@ -1,0 +1,14 @@
+li a {
+    color: black;
+}
+body {
+font-family: arial, sans-serif;
+    background: white ;
+}
+
+    #shop{
+        position:absolute;
+        font-family: "Century Schoolbook L";
+        right: 150px;
+        top:   50px;
+    }

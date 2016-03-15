@@ -1,7 +1,29 @@
 {%extends 'products/base.html'%}
 {%block title%}Главная страница{%endblock%}
 {%block content%}
-    <li><a href="{%url 'products:tobacco_company'%}">Табак</a></li>
-    <li><a href="{%url 'products:other_company'%}">Разное</a></li>
-    <li><a href="{%url 'products:shisha_company'%}">Кальян</a></li>
+<center><table border="0" cellpadding="20">
+
+    <td><a href="{%url 'products:tobacco_company'%}">Табак</a></td>
+    <td><a href="{%url 'products:other_company'%}">Разное</a></td>
+    <td><a href="{%url 'products:shisha_company'%}">Кальян</a></td>
+
+
+</table>
+    <table align="center" border="0" width="100px" height="100px" cellspacing="0">
+{%for random_prod in random_prods%}
+        {{random_prod.flower}}
+        <tr>
+        <td valign="bottom" rowspan="2">
+
+            <a href="{%url 'products:detailtobacco' 1 random_prod.flower%}">
+                <img src="{{random_prod.image.url}}" title="{{random_prod.flower}}"
+                 width="200px" height="200px"/>
+            </a>
+        </td>
+        </tr>
+{%endfor%}
+    </table>
+</center>
+<hr>
+
 {%endblock%}

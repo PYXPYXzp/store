@@ -1,4 +1,5 @@
 {% extends 'products/base.html' %}
+{%load staticfiles%}
 
 <head>
 
@@ -52,6 +53,7 @@
     {{items.product.cost}}
         <input id="id_product" type="hidden" value={{items.id}}>
         <input class="but2" type="submit" value="del"></li>
+            <!--<a href="/cart/remove_item/"><img src="{% static 'products/del.png'%}"width="20px" height="20px"></a>-->
     {%endfor%}
     ИТОГО: {{cart_subtotal}}
     <li> <input id="but1" type="button" value="Пустая корзина"/></li>

@@ -1,4 +1,5 @@
 {% extends 'products/base.html' %}
+{%load staticfiles%}
 
 {% block title%}Табак{%endblock %}
 {% block ext_js %}
@@ -28,10 +29,6 @@
 
                 })
             });
-            $("#but2").click(function(){
-                location.href = '/cart/';
-
-            });
         });
 
     </script>
@@ -44,24 +41,27 @@
     <!--<form action="{% url 'cart:add_to_cart' %}" method="post">-->
     <!--{% csrf_token %}-->
     {% for details in detail %}
-        <img src="{{details.image.url}}"/>
+        <center><img src="{{details.image.url}}" title="{{details.flower}}" /></center>
         {%for companys in company%}
-            <li> {{companys.name_company}}</li>
+            <p>{{companys.name_company}}</p>
 
 
         {%endfor%}
-        <li> {{details.flower}}</li>
-        <li> Цена:{{details.cost}}</li>
-        <li> Вес:{{details.weight_tobacco}}</li>
-        <input  type='hidden' id = "product_id" name="product_id" value="{{ details.id }}">
-        {{ ProductAddToCartForm }}
+        <div>
+            <p>{{details.flower}}</p>
+            <p> Цена:{{details.cost}}</p>
+            <p> Вес:{{details.weight_tobacco}}</p>
+            <input  type='hidden' id = "product_id" name="product_id" value="{{ details.id }}">
+            {{ ProductAddToCartForm }}
+        </div>
     {%endfor%}
 
-    <li> <input id="but1" type="submit" value="Добавить в корзину"/></li>
-    <form action="{% url 'cart:show_cart' %}" method="post">
+     <p><input id="but1" type="submit" value="Добавить в корзину"/></p>
+    <a action="{% url 'cart:show_cart' %}" method="post"></a>
         {% csrf_token %}
-            <li> <input id="but2" type="button" value="Перейти в корзину"/></li>
-    </form>
+        <div id="shop"> <a href="/cart/"><img src="{% static 'shop.png'%}" width="35px" height="35px"></a></div>
+
 <!--</form>-->
+
 
 {%endblock%}
